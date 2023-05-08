@@ -6,7 +6,7 @@ using MoneyManagement.Service.Interfaces;
 
 namespace MoneyManagement.Api.Controllers;
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ExpensesController : ControllerBase
@@ -18,7 +18,7 @@ public class ExpensesController : ControllerBase
     }
 
     [HttpGet("get-all")]
-    [Authorize(Roles = "Admin, SuperAdmin")]
+    //[Authorize(Roles = "Admin, SuperAdmin")]
     public async ValueTask<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
         => Ok(await this.expenseService.RetrieveAllAsync(@params));
 
@@ -40,7 +40,7 @@ public class ExpensesController : ControllerBase
 
 
     [HttpPut("update-as-admin")]
-    [Authorize(Roles = "Admin, SuperAdmin")]
+    //[Authorize(Roles = "Admin, SuperAdmin")]
     public async ValueTask<ActionResult<ExpenseForResultDto>> PutAsAdminAsync(int id, ExpenseForUpdateDto dto)
         => Ok(await this.expenseService.ModifyAsAdminAsync(id, dto));
 
@@ -51,7 +51,7 @@ public class ExpensesController : ControllerBase
 
 
     [HttpDelete("delete-as-admin")]
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     public async ValueTask<ActionResult<bool>> DestroyAsync(int id)
         => Ok(await this.expenseService.DestroyAsync(id));
 

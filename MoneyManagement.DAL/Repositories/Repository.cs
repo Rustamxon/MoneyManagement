@@ -26,7 +26,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
         => (await this.dbSet.AddAsync(entity)).Entity;
 
     public async Task SaveChangesAsync()
-        => await this.dbContext.SaveChangesAsync(); 
+        => await this.dbContext.SaveChangesAsync();
 
     public IQueryable<TEntity> SelectAll(Expression<Func<TEntity, bool>> expression = null, string[] includes = null, bool isTracking = true)
     {

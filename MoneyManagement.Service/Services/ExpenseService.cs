@@ -29,7 +29,7 @@ public class ExpenseService : IExpenseService
 
         if (existExpense is not null && !existExpense.IsDeleted)
             throw new CustomException(404, "Expense is already exist");
-        
+
         var mapped = this.mapper.Map<Expense>(dto);
         mapped.CreatedAt = DateTime.UtcNow;
         var addedModel = await this.repository.InsertAsync(mapped);

@@ -19,6 +19,6 @@ public class MappingProfile : Profile
         CreateMap<Expense, ExpenseForCreationDto>().ReverseMap();
         CreateMap<Expense, ExpenseForResultDto>().ReverseMap();
         CreateMap<Expense, ExpenseForUpdateDto>().ReverseMap();
-        CreateMap<ExpenseForCreationDto,  ExpenseForUpdateDto>().ReverseMap();
+        CreateMap<ExpenseForCreationDto, ExpenseForUpdateDto>().ReverseMap();
     }
 }

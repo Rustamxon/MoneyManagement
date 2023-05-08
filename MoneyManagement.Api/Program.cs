@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -10,9 +9,9 @@ using MoneyManagement.DAL.Contexts;
 using MoneyManagement.Service.Interfaces;
 using MoneyManagement.Service.Mappers;
 using MoneyManagement.Service.Services;
+using MoneyManagement.Shared.Helpers;
 using Serilog;
 using System.Text;
-using Triangle.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,8 +66,12 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IExpenseService, ExpenseService>();
 
 var app = builder.Build();
+
+EnvironmentHelper.WebHostPath =
+    app.Services.GetRequiredService<IWebHostEnvironment>().WebRootPath;
 
 // Updates db in early startup based on latest migration
 //app.ApplyMigrations();
@@ -80,7 +83,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}   
+}
 app.UseMiddleware<ExceptionHandlerMiddleWare>();
 
 app.UseHttpsRedirection();

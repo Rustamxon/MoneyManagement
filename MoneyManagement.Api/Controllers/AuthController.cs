@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MoneyManagement.Service.DTOs.Login;
 using MoneyManagement.Service.Interfaces;
-using MoneyManagement.Service.DTOs.Login;
-using MoneyManagement.Service.Interfaces;
 
 namespace MoneyManagement.Api.Controllers
 {
